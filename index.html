@@ -7,21 +7,128 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./style.css">
 <script>
-function job_descript(x){
-	if(x == 'cto'){
+var active = "none";
+var job_page = 1;
+var total_job_pages = 2;//TODO: ADJUST
+var edu_page = 1;
+var total_edu_pages = 1;//TODO: ADJUST
+function job_descript(x, y){
+	if(y == "none"){
+		document.getElementById('edu').style.display = "none";
+	}
+	else{
+		document.getElementById('edu').style.display = "block";
+	}
+	//TODO: ADJUST TO JOB DESCRIPTS
+	//PG 1
+	if(x == "cto" && y == "none"){
 		document.getElementById('cto-descript').style.display = "block";
 	}
-	else if(x == 'owner'){
+	else {
+		document.getElementById('cto-descript').style.display = "none";
+	}
+	if(x == "owner" && y == "none"){
 		document.getElementById('owner-descript').style.display = "block";
 	}
+	else {
+		document.getElementById('owner-descript').style.display = "none";
+	}
+	if(x == "homemaker" && y == "none"){
+		document.getElementById('homemaker-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('homemaker-descript').style.display = "none";
+	}
+	if(x == "itrepairspecialist" && y == "none"){
+		document.getElementById('itrepairspecialist-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('itrepairspecialist-descript').style.display = "none";
+	}
+	if(x == "programmeranalyst" && y == "none"){
+		document.getElementById('programmeranalyst-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('programmeranalyst-descript').style.display = "none";
+	}
+	//PG 2
+	if(x == "webcontentmanager" && y == "none"){
+		document.getElementById('webcontentmanager-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('webcontentmanager-descript').style.display = "none";
+	}
+	if(x == "webassistant" && y == "none"){
+		document.getElementById('webassistant-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('webassistant-descript').style.display = "none";
+	}
+	if(x == "helpdesk" && y == "none"){
+		document.getElementById('helpdesk-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('helpdesk-descript').style.display = "none";
+	}
+	//PG 3
+	//PG 4
+	//PG 5
 }
-function mouseout(){
-	document.getElementById('cto-descript').style.display = "none";
-	document.getElementById('owner-descript').style.display = "none";
+//TODO: ADD EDU
+function highlight(x){
+	if(x == "left-jobs"){
+		document.getElementById('left-jobs').style.color = "#ffb300";
+	}
+	else if(x == "right-jobs"){
+		document.getElementById('right-jobs').style.color = "#ffb300";
+	}
 }
-</script>
+//TODO: ADD EDU
+function unhighlight(){
+	document.getElementById('left-jobs').style.color = "white";
+	document.getElementById('right-jobs').style.color = "white";
+}
+function switch_pg(x,y){
+	if(x == "jobs"){
+		document.getElementById('left-jobs').style.display = "block";
+		document.getElementById('right-jobs').style.display = "block";
+		if(y == "left"){
+			job_page = job_page - 1;
+		}
+		else {
+			job_page = job_page + 1;
+		}
+		if(job_page == 1){
+			document.getElementById('left-jobs').style.display = "none";
+		}
+		if(job_page == total_job_pages){
+			document.getElementById('right-jobs').style.display = "none";
+		}
+		var theid = "jobs-pg" + job_page;
+		document.getElementById('jobs-pg1').style.display = "none";
+		document.getElementById('jobs-pg2').style.display = "none";
+		document.getElementById('jobs-pg3').style.display = "none";
+		document.getElementById('jobs-pg4').style.display = "none";
+		document.getElementById('jobs-pg5').style.display = "none";
+		document.getElementById(theid).style.display = "block";
+	}
+	else if(x == "education"){
+		//TODO: AD EDU
+	}
+	adjust_height();
+}
+function adjust_height(){
+	if(document.getElementById('work_box').clientHeight > document.getElementById('edu_box').clientHeight){
+		var height = document.getElementById('work_box').clientHeight + "px";
+		document.getElementById('edu_box').style.height = height;
+	}
+	else {
+		var height = document.getElementById('edu_box').clientHeight + "px";
+		document.getElementById('work_box').style.height = height;
+	}
+}</script>
 </head>
-<body>
+<body onload='adjust_height()'>
 <!-- partial:index.partial.html -->
 <div class="resume">
   <div class="base">
@@ -59,57 +166,71 @@ function mouseout(){
     </div>
 	<div class="projects">
 		<h3>Current Projects & Goals</h3>
-		<small>
-		<div class="game_jams"><b>Game Jams: </b><a href='https://itch.io/jam/themed-horror-game-jam-14'>Themed Horror Game Jam</a></div>
-		<div class="business"><b>Business Goals:</b> Improve Product Awareness to Increase Sales</div>
-		<div class="career"><b>Career Goals:</b> Build a strong portfolio through job and life opportunities.</div>
-		<div class="personal"><b>Personal Goals:</b> Create a positive environment within my home through decluttering of unnecessary stuff and improving the layout of the home.</div>
-		</small>
+		<div class="game_jams">Game Jams: <small></small></div>
+		<div class="business">Business Goals: <small>Improve Product Awareness to Increase Sales</small></div>
+		<div class="career">Career Goals: <small>Build a strong portfolio through job and life opportunities.</small></div>
+		<div class="personal">Personal Goals: <small>Create a positive environment within my home through decluttering of unnecessary stuff and improving the layout of the home.</small></div>
 	</div>
   </div>
   <div class="func">
-    <div class="work">
+    <div class="work" id="work_box">
       <h3><i class="fa fa-briefcase"></i>Experience</h3>
       <ul>
-        <li onmouseover="job_descript('cto')" onmouseout="mouseout()">
-			<span>Chief Technology Officer</span>
-			<small><a href='https://futurecarellc.github.io/'>Future Care, LLC</a></small><small>Feb 2023 - Now</small>
-			<small>
-				<div style="display: none" id="cto-descript">
-					<p><b>How I Started:</b> I had gone in for an interview at a company expecting to be a DSP. As the interview proceeded, I noticed much of the IT out of date and pointed out that my job qualifications as well as work history made it possible for me to fix these issues. After a while, the work load piled up, as I had to start from scratch. As my work load grew and my responsibilities with it, we came to realize I had no longer been an IT person, but rather a Chief Technology Officer and as such, was given the appropriate title for the work I was completing.</p>
-					<p><b>Job Responsibilities:</b></p>
-					<ul>
-						<li>Discuss budgetting necessary for hardware and software.</li>
-						<li>Develop, lead, and oversee all things involved with the IT infrastructure including data tracking, collecting, and automation of common tasks.</li>
-						<li>Develop policies and procedures in regards to IT usage.</li>
-					</ul>
-				</div>
-			</small>
-		</li>
-		<li onmouseover="job_descript('owner')" onmouseout="mouseout()">
-			<span>Business Owner</span>
-			<small><a href='https://thathousewife.github.io/'>That Housewife</a></small><small>March 2023 - Now</small>
-			<small>
-				<div style="display: none" id="owner-descript">
-					<p><b>How I Started:</b> My father had become very ill with kidney failure caused by diabetes. After picking up baking that had been approved by dieticians, I found we were able to cut down his weight and stave off his cravings in a safe and healthy way around his strict diet. Unfortunately, baking meant full batches meant a lot of food waste, so after a while, I started attending the farmer's market to help others with dietary restrictions as well.</p>
-					<p><b>Job Responsibilities:</b></p>
-					<ul>
-						<li>Creating business plans and budgets.</li>
-						<li>Arranging financing and reviewing sales.</li>
-						<li>Developing marketing strategies.</li>
-						<li>Talking with customers, answering questions, and taking orders.</li>
-					</ul>
-				</div>
-			</small>
-		</li>
-        <li><span>IT Repair Specialist</span><small>Comcast</small><small>Feb 2020 - Oct 2020<small>Reason For Leave: Continue Education</small></small></li>
-        <li><span>Help Desk Technician</span><small>Ozarks Technical Community College</small><small>Mar 2020 - Aug 2020<small>Reason For Leave: Offer at Much Higher Pay</small></small></li>
-		<li><span>Programmer Analyst</span><small>Ozarks Technical Community College</small><small>Oct 2019 - Mar 2020<small>Reason For Leave: Covid Lay-Offs Pushing Other Departments to Merge</small></small></li>
-		<li><span>Web Content Manager</span><small>Ozarks Technical Community College</small><small>Mar 2018 - Oct 2019<small>Reason For Leave: Promotion with Higher Pay and More Responsibilities</small></small></li>
-		<li><span>Web Assistant</span><small>Ozarks Technical Community College</small><small>Jan 2017 - Mar 2018<small>Reason For Leave: Promotion with Higher Pay and More Responsibilities</small></small></li>
+		<span id='jobs-pg1' style="display: block;">
+			<li onclick="job_descript('cto', document.getElementById('cto-descript').style.display)">
+				<span>Chief Technology Officer</span>
+				<small><a href='https://futurecarellc.github.io/'>Future Care, LLC</a></small><small>Feb 2023 - Now</small>
+			</li>
+			<li onclick="job_descript('owner', document.getElementById('owner-descript').style.display)">
+				<span>Business Owner</span>
+				<small><a href='https://thathousewife.github.io/'>That Housewife</a></small><small>Mar 2023 - Now</small>
+			</li>
+			<li onclick="job_descript('homemaker', document.getElementById('homemaker-descript').style.display)">
+				<span>Homemaker</span>
+				<small>Oct 2020 - Mar 2020
+				<small>Reason for Leave: Given Job Opportunity to earn the Finanical Means Necessary to Care for Elderly Parents</small></small>
+			</li>
+			<li onclick="job_descript('itrepairspecialist', document.getElementById('itrepairspecialist-descript').style.display)">
+				<span>IT Repair Specialist</span>
+				<small>Comcast</small><small>Feb 2020 - Oct 2020
+				<small>Reason For Leave: Continue Education & Provide Support for Elderly Parents</small></small>
+			</li>
+			<li onclick="job_descript('helpdesk', document.getElementById('helpdesk-descript').style.display)">
+				<span>Help Desk Technician</span>
+				<small>Ozarks Technical Community College</small><small>Mar 2020 - Aug 2020
+				<small>Reason For Leave: Offer at Much Higher Pay</small></small>
+			</li>
+		</span>
+		<span id='jobs-pg2' style="display: none;">
+			<li onclick="job_descript('programmeranalyst', document.getElementById('programmeranalyst-descript').style.display)">
+				<span>Programmer Analyst</span>
+				<small>Ozarks Technical Community College</small><small>Oct 2019 - Mar 2020<small>
+				Reason For Leave: Covid Lay-Offs Pushing Other Departments to Merge</small></small>
+			</li>
+			<li onclick="job_descript('webcontentmanager', document.getElementById('webcontentmanager-descript').style.display)">
+				<span>Web Content Manager</span>
+				<small>Ozarks Technical Community College</small><small>Mar 2018 - Oct 2019<small>
+				Reason For Leave: Promotion with Higher Pay and More Responsibilities</small></small>
+			</li>
+			<li onclick="job_descript('webassistant', document.getElementById('webassistant-descript').style.display)">
+				<span>Web Assistant</span>
+				<small>Ozarks Technical Community College</small>
+				<small>Jan 2017 - Mar 2018<small>Reason For Leave: Promotion with Higher Pay and More Responsibilities</small></small>
+			</li>
+		</span>
+		<span id='jobs-pg3' style="display: none;">
+		</span>
+		<span id='jobs-pg4' style="display: none;">
+		</span>
+		<span id='jobs-pg5' style="display: none;">
+		</span>
       </ul>
+	  <p style="text-align: right; bottom: 0; right: 0;"><span class='left' id='left-jobs' onmouseover="highlight('left-jobs')" onmouseout="unhighlight()" 
+		style="display: none;" onclick="switch_pg('jobs','left')">&#8592;</span> <span class='right' id='right-jobs' onmouseover="highlight('right-jobs')" 
+		onmouseout="unhighlight()" style="display: block;"  onclick="switch_pg('jobs','right')">&#8594;</span></p>
     </div>
-    <div class="edu">
+    <div class="edu" id="edu_box">
+		<div id='edu' style="display: block">
       <h3><i class="fa fa-graduation-cap"></i>Education</h3>
       <ul>
 	<li><span>Information Technology - Cybersecurity</span><small>Missouri State University</small><small>Expected Graduation: Fall 2023*<small>Equivalency Recieved: Fall 2022</small></small></li>
@@ -118,6 +239,100 @@ function mouseout(){
         <li><span>General Studies</span><small>Ozarks Technical Community College</small><small>Graduation: Spring 2019</small></li>
         <li><span>High School</span><small>Buffalo High School</small><small>Graduation: Spring 2017</small></li>
       </ul>
+	  </div>
+		<div style="display: none" id="cto-descript">
+			<h3>Chief Technology Officer</h3>
+			<small>
+				<p><b>How I Started:</b> I had gone in for an interview at a company expecting to be a DSP. As the interview proceeded, I noticed much of the IT out of date and pointed out that my job qualifications as well as work history made it possible for me to fix these issues. After a while, the work load piled up, as I had to start from scratch. As my work load grew and my responsibilities with it, we came to realize I had no longer been an IT person, but rather a Chief Technology Officer and as such, was given the appropriate title for the work I was completing.</p>
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Discuss budgetting necessary for hardware and software.</li>
+					<li>Develop, lead, and oversee all things involved with the IT infrastructure including data tracking, collecting, and automation of common tasks.</li>
+					<li>Develop policies and procedures in regards to IT usage.</li>
+				</ul>
+			</small>
+		</div>
+		<div style="display: none" id="owner-descript">
+			<h3>Business Owner</h3>
+			<small>
+				<p><b>How I Started:</b> My father had become very ill with kidney failure caused by diabetes. After picking up baking that had been approved by dieticians, I found we were able to cut down his weight and stave off his cravings in a safe and healthy way around his strict diet. Unfortunately, baking meant full batches and with it, a lot of food waste; so, after a while, I started attending the farmer's market to help others with dietary restrictions as well.</p>
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Creating business plans and budgets.</li>
+					<li>Arranging financing and reviewing sales.</li>
+					<li>Developing marketing strategies.</li>
+					<li>Talking with customers, answering questions, and taking orders.</li>
+				</ul>
+			</small>
+		</div>
+		<div style="display: none" id="homemaker-descript">
+			<h3>Homemaker</h3>
+			<small>
+				<p><b>How I Started:</b> My father had began to become ill and the best way I could help him at the time was to finish my education while caring for him.
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Planning and managing household bills and expenditures.</li>
+					<li>Arranging and providing transportation to and from doctor appointments.</li>
+					<li>Meal planning and prep.</li>
+					<li>Occasional assistance with medicine and at home physical therapy.</li>
+				</ul>
+			</small>
+		</div>
+		<div style="display: none" id="itrepairspecialist-descript">
+			<h3>IT Repair Specialist</h3>
+			<small>
+				<p><b>How I Started:</b> A job posting provided a higher paying remote position allowing me to not need to drive 1 hour each way to work everyday.
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Taking calls, documenting, and inputing tickets.</li>
+					<li>Problem solving internet concerns through a solid understanding of hardware and Comcast products.</li>
+					<li>Finding and promoting new deals with Comcast to consumers.</li>
+				</ul>
+			</small>
+		</div>
+		<div style="display: none" id="helpdesk-descript">
+			<h3>Help Desk Technician</h3>
+			<small>
+				<p><b>How I Started:</b> Covid had forced much of the department to take work back home, leaving me to merge into the help desk department as a way to have a programmer analyst on site.
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Taking calls, documenting, and inputing tickets.</li>
+					<li>Troubleshooting account issues and assisting with password resets.</li>
+					<li>Problem solving internet and hardwware concerns through a solid understanding of software and hardware.</li>
+					<li>Resolving escalated tickets to the Programmer Analyst department.</li>
+				</ul>
+			</small>
+		</div>
+		<div style="display: none" id="programmeranalyst-descript">
+			<h3>Programmer Analyst</h3>
+			<small>
+				<p><b>How I Started:</b> A position with higher pay and more responsibility had opened up.
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Todo.</li>
+				</ul>
+			</small>
+		</div>
+		<div style="display: none" id="webcontentmanager-descript">
+			<h3>Web Content Manager</h3>
+			<small>
+				<p><b>How I Started:</b> A position with higher pay and more responsibility had opened up.
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Todo</li>
+				</ul>
+			</small>
+		</div>
+		<div style="display: none" id="webassistant-descript">
+			<h3>Web Assistant</h3>
+			<small>
+				<p><b>How I Started:</b> Was part of the internship program. After proving my skills and value, I was offered a permanent position.
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<li>Todo</li>
+				</ul>
+			</small>
+		</div>
     </div>
     <div class="skills-prog">
       <h3><i class="fas fa-code"></i>Programming Skills</h3>
