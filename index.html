@@ -10,9 +10,16 @@
 var active = "none";
 var job_page = 1;
 var total_job_pages = 2;//TODO: ADJUST
+var responsibilities_pg = 1;
+var total_responsibility_pages = 1;//TODO: ADJUST WITHIN PG_SWITCH()
 var edu_page = 1;
 var total_edu_pages = 1;//TODO: ADJUST
 function job_descript(x, y){
+	//TODO: ADD RIGHT ARROW TO APPROPRIATE ONES
+	responsibilities_pg = 1;
+	total_responsibility_pages = 1;
+	document.getElementById('left-responsibilities').style.display = "none";
+	document.getElementById('right-responsibilities').style.display = "none";
 	if(y == "none"){
 		document.getElementById('edu').style.display = "none";
 	}
@@ -23,12 +30,16 @@ function job_descript(x, y){
 	//PG 1
 	if(x == "cto" && y == "none"){
 		document.getElementById('cto-descript').style.display = "block";
+		total_responsibility_pages = 2;
+		document.getElementById('right-responsibilities').style.display = "block";
 	}
 	else {
 		document.getElementById('cto-descript').style.display = "none";
 	}
 	if(x == "owner" && y == "none"){
 		document.getElementById('owner-descript').style.display = "block";
+		total_responsibility_pages = 2;
+		document.getElementById('right-responsibilities').style.display = "block";
 	}
 	else {
 		document.getElementById('owner-descript').style.display = "none";
@@ -82,11 +93,19 @@ function highlight(x){
 	else if(x == "right-jobs"){
 		document.getElementById('right-jobs').style.color = "#ffb300";
 	}
+	else if(x == "left-responsibilities"){
+		document.getElementById('left-responsibilities').style.color = "#ffb300";
+	}
+	else if(x == "right-responsibilities"){
+		document.getElementById('right-responsibilities').style.color = "#ffb300";
+	}
 }
 //TODO: ADD EDU
 function unhighlight(){
 	document.getElementById('left-jobs').style.color = "white";
 	document.getElementById('right-jobs').style.color = "white";
+	document.getElementById('left-responsibilities').style.color = "white";
+	document.getElementById('right-responsibilities').style.color = "white";
 }
 function switch_pg(x,y){
 	if(x == "jobs"){
@@ -111,6 +130,51 @@ function switch_pg(x,y){
 		document.getElementById('jobs-pg4').style.display = "none";
 		document.getElementById('jobs-pg5').style.display = "none";
 		document.getElementById(theid).style.display = "block";
+	}
+	else if(x == "responsibilities"){
+		if(document.getElementById('cto-descript').style.display == "block" || document.getElementById('owner-descript').style.display == "block"){
+			total_responsibilities_pages = 2;
+		}
+		if(total_responsibilities_pages == 1){
+			document.getElementById('left-responsibilities').style.display = "none";
+			document.getElementById('right-responsibilities').style.display = "none";
+		}
+		else {
+			document.getElementById('left-responsibilities').style.display = "block";
+			document.getElementById('right-responsibilities').style.display = "block";
+			if(y == "left"){
+				responsibilities_pg = responsibilities_pg - 1;
+			}
+			else {
+				responsibilities_pg = responsibilities_pg + 1;
+			}
+			if(responsibilities_pg == 1){
+				document.getElementById('left-responsibilities').style.display = "none";
+			}
+			if(responsibilities_pg == total_responsibilities_pages){
+				document.getElementById('right-responsibilities').style.display = "none";
+			}
+			if(document.getElementById('cto-descript').style.display == "block"){
+				if(y == "left"){
+					document.getElementById('cto-pg-1').style.display = "block";
+					document.getElementById('cto-pg-2').style.display = "none";
+				}
+				else if(y == "right"){
+					document.getElementById('cto-pg-1').style.display = "none";
+					document.getElementById('cto-pg-2').style.display = "block";
+				}
+			}
+			else if(document.getElementById('owner-descript').style.display == "block"){
+				if(y == "left"){
+					document.getElementById('owner-pg-1').style.display = "block";
+					document.getElementById('owner-pg-2').style.display = "none";
+				}
+				else if(y == "right"){
+					document.getElementById('owner-pg-1').style.display = "none";
+					document.getElementById('owner-pg-2').style.display = "block";
+				}
+			}
+		}
 	}
 	else if(x == "education"){
 		//TODO: AD EDU
@@ -357,6 +421,9 @@ function adjust_height(){
 				</ul>
 			</small>
 		</div>
+			  <p style="text-align: right; bottom: 0; right: 0;"><span class='left' id='left-responsibilities' onmouseover="highlight('left-responsibilities')" onmouseout="unhighlight()" 
+		style="display: none;" onclick="switch_pg('responsibilities','left')">&#8592;</span> <span class='right' id='right-responsibilities' onmouseover="highlight('right-responsibilities')" 
+		onmouseout="unhighlight()" style="display: none;"  onclick="switch_pg('responsibilities','right')">&#8594;</span></p>
     </div>
     <div class="skills-prog">
       <h3><i class="fas fa-code"></i>Programming Skills</h3>
