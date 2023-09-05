@@ -72,20 +72,30 @@ var edu_page = 1;
 var total_edu_pages = 1;//TODO: ADJUST
 //list of skills and professional positions it applies to
 var soft_skills = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'critical thinking', 'creativity', 'work ethic', 'leadership', 'team management', 'project management', 'interpersonal skills', 'organizational skills','time management','stress management']
-var hard_skills = ['networking','event preperation','accounting','business plan development','business operations','marketing','HTML','CSS','python','SQL','JavaScript','C++','C#','R Code']
-var software_skill = ['Marketing Automation','Microsoft Office', 'Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
+var hard_skills = ['Computer Diagnostics','VPNs','Remote Desktops','IT Management','networking','event preperation','accounting','business plan development','business operations','marketing','HTML','CSS','python','SQL','JavaScript','C++','C#','R Code']
+var software_skill = ['Firewall','Windows','Linux','Marketing Automation','Microsoft Office', 'Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github', 'Basic Hardware Maintenance', 'Medical Device Usage']
  
 var cto_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'creativity', 'work ethic', 'leadership', 'team management', 'critical thinking','interpersonal skills','time management','stress management']
-var cto_skills_hard = ['HTML','CSS','SQL','JavaScript','R Code']
-var cto_skills_software = ['Microsoft Office','Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
+var cto_skills_hard = ['Computer Diagnostics','VPNs','Remote Desktops','IT Management','HTML','CSS','SQL','JavaScript','R Code']
+var cto_skills_software = ['Firewall','Windows','Linux','Microsoft Office','Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
 
 var owner_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'leadership', 'adaptability', 'problem solving', 'critical thinking', 'creativity','interpersonal skills','time management','organizational skills','stress management']
 var owner_skills_hard = ['accounting','business plan development','business operations','marketing']
-var owner_skills_software = ['Microsoft Office','Google Forms','Google Sheets/Excel','R Studio','Github']
+var owner_skills_software = ['Windows','Microsoft Office','Google Forms','Google Sheets/Excel','R Studio','Github']
 
 var model_skills_soft = ['verbal communication','teamwork','adaptability','work ethic','time management','stress management','interpersonal skills']
 var model_skills_hard = ['marketing','networking','event preperation']
 var model_skills_software = ['Microsoft Office','Marketing Automation', 'Github']
+
+var homemaker_skills_soft = ['written communication', 'verbal communication', 'adaptability', 'work ethic', 'interpersonal skills'];
+var homemaker_skills_hard = ['CPR Certified','Med Certified'];
+var homemaker_skills_software = ['Basic Hardware Maintenance', 'Medical Device Usage'];
+
+var itrepairspecialist_skills_soft = ['written communication', 'verbal communication', 'work ethic','interpersonal skills','problem solving','critical thinking'];
+var itrepairspecialist_skills_hard = ['VPNs','Remote Desktops','Computer Diagnostics'];
+var itrepairspecialist_skills_software = ['Firewall','Windows','Linux'];
+
+
 function job_descript(x, y){
 	//TODO: ADD RIGHT ARROW TO APPROPRIATE ONES
 	responsibilities_pg = 1;
@@ -162,7 +172,6 @@ function job_descript(x, y){
 	}
 	if(x == "model" && y == "none"){
 		document.getElementById('model-descript').style.display = "block";
-		document.getElementById('right-responsibilities').style.display = "block";
 		document.getElementById('model-skills-soft').innerHTML = "";
 		document.getElementById('model-skills-hard').innerHTML = "";
 		document.getElementById('model-skills-software').innerHTML = "";
@@ -185,44 +194,66 @@ function job_descript(x, y){
 			i = i + 1;
 		}
 		document.getElementById('model-skills').style.display = "block";
-		document.getElementById('left-responsibilities').style.display = "none";//TODO: FIGURE OUT HOW TO REMOVE THIS
-		document.getElementById('right-responsibilities').style.display = "none";//TODO: FIGURE OUT HOW TO REMOVE THIS
 	}
 	else {
 		document.getElementById('model-descript').style.display = "none";
 	}
 	if(x == "homemaker" && y == "none"){
 		document.getElementById('homemaker-descript').style.display = "block";
-		/*
+		total_responsibility_pages = 2;
+		document.getElementById('right-responsibilities').style.display = "block";
 		document.getElementById('homemaker-skills-soft').innerHTML = "";
 		document.getElementById('homemaker-skills-hard').innerHTML = "";
 		document.getElementById('homemaker-skills-software').innerHTML = "";
 		var i = 0;
-		var y = owner_skills_soft.length;
+		var y = homemaker_skills_soft.length;
 		while(i < y){
-			document.getElementById('homemaker-skills-soft').innerHTML = document.getElementById('homemaker-skills-soft').innerHTML + "<button class='soft-skills'>" + owner_skills_soft[i] + "</button>"
+			document.getElementById('homemaker-skills-soft').innerHTML = document.getElementById('homemaker-skills-soft').innerHTML + "<button class='soft-skills'>" + homemaker_skills_soft[i] + "</button>"
 			i = i + 1;
 		}
 		i = 0;
-		y = owner_skills_hard.length;
+		y = homemaker_skills_hard.length;
 		while(i < y){
-			document.getElementById('homemaker-skills-hard').innerHTML = document.getElementById('homemaker-skills-hard').innerHTML + "<button class='hard-skills'>" + owner_skills_hard[i] + "</button>"
+			document.getElementById('homemaker-skills-hard').innerHTML = document.getElementById('homemaker-skills-hard').innerHTML + "<button class='hard-skills'>" + homemaker_skills_hard[i] + "</button>"
 			i = i + 1;
 		}
 		i = 0;
-		y = owner_skills_software.length;
+		y = homemaker_skills_software.length;
 		while(i < y){
-			document.getElementById('homemaker-skills-software').innerHTML = document.getElementById('homemaker-skills-software').innerHTML + "<button class='software-skills'>" + owner_skills_software[i] + "</button>"
+			document.getElementById('homemaker-skills-software').innerHTML = document.getElementById('homemaker-skills-software').innerHTML + "<button class='software-skills'>" + homemaker_skills_software[i] + "</button>"
 			i = i + 1;
 		}
 		document.getElementById('homemaker-skills').style.display = "block";
-		*/
 	}
 	else {
 		document.getElementById('homemaker-descript').style.display = "none";
 	}
 	if(x == "itrepairspecialist" && y == "none"){
 		document.getElementById('itrepairspecialist-descript').style.display = "block";
+		//total_responsibility_pages = 2;
+		//document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('itrepairspecialist-skills-soft').innerHTML = "";
+		document.getElementById('itrepairspecialist-skills-hard').innerHTML = "";
+		document.getElementById('itrepairspecialist-skills-software').innerHTML = "";
+		var i = 0;
+		var y = itrepairspecialist_skills_soft.length;
+		while(i < y){
+			document.getElementById('itrepairspecialist-skills-soft').innerHTML = document.getElementById('itrepairspecialist-skills-soft').innerHTML + "<button class='soft-skills'>" + itrepairspecialist_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = itrepairspecialist_skills_hard.length;
+		while(i < y){
+			document.getElementById('itrepairspecialist-skills-hard').innerHTML = document.getElementById('itrepairspecialist-skills-hard').innerHTML + "<button class='hard-skills'>" + itrepairspecialist_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = itrepairspecialist_skills_software.length;
+		while(i < y){
+			document.getElementById('itrepairspecialist-skills-software').innerHTML = document.getElementById('itrepairspecialist-skills-software').innerHTML + "<button class='software-skills'>" + itrepairspecialist_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('itrepairspecialist-skills').style.display = "block";
 	}
 	else {
 		document.getElementById('itrepairspecialist-descript').style.display = "none";
@@ -303,10 +334,10 @@ function switch_pg(x,y){
 		document.getElementById(theid).style.display = "block";
 	}
 	else if(x == "responsibilities"){
-		if(document.getElementById('cto-descript').style.display == "block" || document.getElementById('owner-descript').style.display == "block"){
-			total_responsibilities_pages = 2;
+		if(document.getElementById('cto-descript').style.display == "block" || document.getElementById('owner-descript').style.display == "block" || document.getElementById('homemaker-descript').style.display == "block"){
+			total_responsibility_pages = 2;
 		}
-		if(total_responsibilities_pages == 1){
+		if(total_responsibility_pages == 1){
 			document.getElementById('left-responsibilities').style.display = "none";
 			document.getElementById('right-responsibilities').style.display = "none";
 		}
@@ -322,7 +353,7 @@ function switch_pg(x,y){
 			if(responsibilities_pg == 1){
 				document.getElementById('left-responsibilities').style.display = "none";
 			}
-			if(responsibilities_pg == total_responsibilities_pages){
+			if(responsibilities_pg == total_responsibility_pages){
 				document.getElementById('right-responsibilities').style.display = "none";
 			}
 			if(document.getElementById('cto-descript').style.display == "block"){
@@ -343,6 +374,16 @@ function switch_pg(x,y){
 				else if(y == "right"){
 					document.getElementById('owner-pg-1').style.display = "none";
 					document.getElementById('owner-pg-2').style.display = "block";
+				}
+			}
+			else if(document.getElementById('homemaker-descript').style.display == "block"){
+				if(y == "left"){
+					document.getElementById('homemaker-pg-1').style.display = "block";
+					document.getElementById('homemaker-pg-2').style.display = "none";
+				}
+				else if(y == "right"){
+					document.getElementById('homemaker-pg-1').style.display = "none";
+					document.getElementById('homemaker-pg-2').style.display = "block";
 				}
 			}
 		}
@@ -446,6 +487,27 @@ function carasoulhomemaker(){
 		clearInterval();
 	}
 }
+function carasoulitrepairspecialist(){
+	if(document.getElementById('itrepairspecialist-skills-soft').style.display == "block"){
+		document.getElementById('itrepairspecialist-skills-soft').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-hard').style.display = "block";
+		document.getElementById('itrepairspecialist-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('itrepairspecialist-skills-hard').style.display == "block"){
+		document.getElementById('itrepairspecialist-skills-soft').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-hard').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('itrepairspecialist-skills-software').style.display == "block"){
+		document.getElementById('itrepairspecialist-skills-soft').style.display = "block";
+		document.getElementById('itrepairspecialist-skills-hard').style.display = "none";
+		document.getElementById('itrepairspecialist-skills-software').style.display = "none";
+		setTimeout(carasoulitrepairspecialist,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
 </script>
 </head>
 <body onload='adjust_height()'>
@@ -505,16 +567,16 @@ function carasoulhomemaker(){
 				<span>Business Owner</span>
 				<small><a href='https://thathousewife.github.io/' class='portfolio'>That Housewife</a></small><small>Mar 2023 - Current</small>
 			</li>
-			<li onclick="job_descript('model', document.getElementById('model-descript').style.display)">
+			<li onclick="job_descript('model', document.getElementById('model-descript').style.display), setInterval(carasoulmodel,5000)">
 				<span>Professional Model</span>
 				<small><a href='https://imagestalent.com/mehala-keller/' class='portfolio'>Images Agency</a></small><small>Mar 2020 - Current</small>
 			</li>
-			<li onclick="job_descript('homemaker', document.getElementById('homemaker-descript').style.display)">
+			<li onclick="job_descript('homemaker', document.getElementById('homemaker-descript').style.display), setInterval(carasoulhomemaker,5000)">
 				<span>Private Direct Support Professional</span>
 				<small>Oct 2020 - Mar 2023
 				<small>Reason for Leave: Given new job opportunity within my field of study with a higher pay.</small></small>
 			</li>
-			<li onclick="job_descript('itrepairspecialist', document.getElementById('itrepairspecialist-descript').style.display)">
+			<li onclick="job_descript('itrepairspecialist', document.getElementById('itrepairspecialist-descript').style.display), setInterval(carasoulitrepairspecialist,5000)">
 				<span>IT Repair Specialist</span>
 				<small>Comcast</small><small>Feb 2020 - Oct 2020
 				<small>Reason For Leave: Continue Education with a Job More Able to Work With My Schedule</small></small>
@@ -639,13 +701,22 @@ struggling to find somebody who would adhere to a strict diet plan
 for their spouse. I was looking at transferring out of my current position and offered that with some extra pay and hours that wouldn't interefere with school I was willing to take it up until I was closer to graduation or a better offer arrived. They agreed and hours I didn't work the wife had.</p>
 				<p><b>Job Responsibilities:</b></p>
 				<ul>
-					<li>Managing the household budget and spending.</li>
-					<li>Cooking, cleaning, laundry, and shopping for groceries.</li>
-					<li>Overseeing proper maintenance and handling of home equipment.</li>
-					<li>Scheduling and assisting with travel to and from doctor appointments.</li>
-					<li>Engaging in doctor appointments as necessary.</li>
-					<li>Assisting with medication and record keeping of diet, weight, and water intake.</li>
+					<span id='homemaker-pg-1' style='display: block'>
+						<li>Managing the household budget and spending.</li>
+						<li>Cooking, cleaning, laundry, and shopping for groceries.</li>
+						<li>Overseeing proper maintenance and handling of home equipment.</li>
+						<li>Scheduling and assisting with travel to and from doctor appointments.</li>
+					</span>
+					<span id='homemaker-pg-2' style='display: none'>
+						<li>Engaging in doctor appointments as necessary.</li>
+						<li>Assisting with medication and record keeping of diet, weight, and water intake.</li>
+					</span>
 				</ul>
+				<span id='homemaker-skills' style="display: none">
+					<span id='homemaker-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='homemaker-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='homemaker-skills-software' style="display: none" class='fade-in'></span>
+				</span>
 			</small>
 		</div>
 		<div style="display: none" id="itrepairspecialist-descript">
@@ -658,6 +729,11 @@ for their spouse. I was looking at transferring out of my current position and o
 					<li>Turn in tickets and request for on-site assistance as needed.</li>
 					<li>Inform customers of ongoing deals and sales that appear beneficial to their wants and needs.</li>
 				</ul>
+				<span id='itrepairspecialist-skills' style="display: none">
+					<span id='itrepairspecialist-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='itrepairspecialist-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='itrepairspecialist-skills-software' style="display: none" class='fade-in'></span>
+				</span>
 			</small>
 		</div>
 		<div style="display: none" id="helpdesk-descript">
