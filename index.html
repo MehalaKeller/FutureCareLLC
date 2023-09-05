@@ -71,17 +71,21 @@ var total_responsibility_pages = 1;//TODO: ADJUST WITHIN PG_SWITCH()
 var edu_page = 1;
 var total_edu_pages = 1;//TODO: ADJUST
 //list of skills and professional positions it applies to
-var soft_skills = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'critical thinking', 'creativity', 'work ethic', 'leadership', 'team management', 'project management', 'interpersonal skills', 'organizational skills','time management']
-var hard_skills = ['accounting','business plan development','business operations','marketing','HTML','CSS','python','SQL','JavaScript','C++','C#','R Code']
-var software_skill = ['Microsoft Office', 'Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
+var soft_skills = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'critical thinking', 'creativity', 'work ethic', 'leadership', 'team management', 'project management', 'interpersonal skills', 'organizational skills','time management','stress management']
+var hard_skills = ['networking','event preperation','accounting','business plan development','business operations','marketing','HTML','CSS','python','SQL','JavaScript','C++','C#','R Code']
+var software_skill = ['Marketing Automation','Microsoft Office', 'Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
  
-var cto_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'creativity', 'work ethic', 'leadership', 'team management', 'critical thinking','interpersonal skills','time management']
+var cto_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'creativity', 'work ethic', 'leadership', 'team management', 'critical thinking','interpersonal skills','time management','stress management']
 var cto_skills_hard = ['HTML','CSS','SQL','JavaScript','R Code']
 var cto_skills_software = ['Microsoft Office','Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
 
-var owner_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'leadership', 'adaptability', 'problem solving', 'critical thinking', 'creativity','interpersonal skills','time management','organizational skills']
+var owner_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'leadership', 'adaptability', 'problem solving', 'critical thinking', 'creativity','interpersonal skills','time management','organizational skills','stress management']
 var owner_skills_hard = ['accounting','business plan development','business operations','marketing']
 var owner_skills_software = ['Microsoft Office','Google Forms','Google Sheets/Excel','R Studio','Github']
+
+var model_skills_soft = ['verbal communication','teamwork','adaptability','work ethic','time management','stress management','interpersonal skills']
+var model_skills_hard = ['marketing','networking','event preperation']
+var model_skills_software = ['Microsoft Office','Marketing Automation', 'Github']
 function job_descript(x, y){
 	//TODO: ADD RIGHT ARROW TO APPROPRIATE ONES
 	responsibilities_pg = 1;
@@ -156,17 +160,66 @@ function job_descript(x, y){
 	else {
 		document.getElementById('owner-descript').style.display = "none";
 	}
-	if(x == "homemaker" && y == "none"){
-		document.getElementById('homemaker-descript').style.display = "block";
-	}
-	else {
-		document.getElementById('homemaker-descript').style.display = "none";
-	}
 	if(x == "model" && y == "none"){
 		document.getElementById('model-descript').style.display = "block";
+		document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('model-skills-soft').innerHTML = "";
+		document.getElementById('model-skills-hard').innerHTML = "";
+		document.getElementById('model-skills-software').innerHTML = "";
+		var i = 0;
+		var y = model_skills_soft.length;
+		while(i < y){
+			document.getElementById('model-skills-soft').innerHTML = document.getElementById('model-skills-soft').innerHTML + "<button class='soft-skills'>" + model_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = model_skills_hard.length;
+		while(i < y){
+			document.getElementById('model-skills-hard').innerHTML = document.getElementById('model-skills-hard').innerHTML + "<button class='hard-skills'>" + model_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = model_skills_software.length;
+		while(i < y){
+			document.getElementById('model-skills-software').innerHTML = document.getElementById('model-skills-software').innerHTML + "<button class='software-skills'>" + model_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('model-skills').style.display = "block";
+		document.getElementById('left-responsibilities').style.display = "none";//TODO: FIGURE OUT HOW TO REMOVE THIS
+		document.getElementById('right-responsibilities').style.display = "none";//TODO: FIGURE OUT HOW TO REMOVE THIS
 	}
 	else {
 		document.getElementById('model-descript').style.display = "none";
+	}
+	if(x == "homemaker" && y == "none"){
+		document.getElementById('homemaker-descript').style.display = "block";
+		/*
+		document.getElementById('homemaker-skills-soft').innerHTML = "";
+		document.getElementById('homemaker-skills-hard').innerHTML = "";
+		document.getElementById('homemaker-skills-software').innerHTML = "";
+		var i = 0;
+		var y = owner_skills_soft.length;
+		while(i < y){
+			document.getElementById('homemaker-skills-soft').innerHTML = document.getElementById('homemaker-skills-soft').innerHTML + "<button class='soft-skills'>" + owner_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = owner_skills_hard.length;
+		while(i < y){
+			document.getElementById('homemaker-skills-hard').innerHTML = document.getElementById('homemaker-skills-hard').innerHTML + "<button class='hard-skills'>" + owner_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = owner_skills_software.length;
+		while(i < y){
+			document.getElementById('homemaker-skills-software').innerHTML = document.getElementById('homemaker-skills-software').innerHTML + "<button class='software-skills'>" + owner_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('homemaker-skills').style.display = "block";
+		*/
+	}
+	else {
+		document.getElementById('homemaker-descript').style.display = "none";
 	}
 	if(x == "itrepairspecialist" && y == "none"){
 		document.getElementById('itrepairspecialist-descript').style.display = "block";
@@ -324,7 +377,7 @@ function carasoulcto(){
 		document.getElementById('cto-skills-soft').style.display = "block";
 		document.getElementById('cto-skills-hard').style.display = "none";
 		document.getElementById('cto-skills-software').style.display = "none";
-		sleep(2000);
+		setTimeout(carasoulcto,2000);
 	}
 	else{
 		clearInterval();
@@ -345,7 +398,49 @@ function carasoulowner(){
 		document.getElementById('owner-skills-soft').style.display = "block";
 		document.getElementById('owner-skills-hard').style.display = "none";
 		document.getElementById('owner-skills-software').style.display = "none";
-		sleep(2000);
+		setTimeout(carasoulowner,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+function carasoulmodel(){
+	if(document.getElementById('model-skills-soft').style.display == "block"){
+		document.getElementById('model-skills-soft').style.display = "none";
+		document.getElementById('model-skills-hard').style.display = "block";
+		document.getElementById('model-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('model-skills-hard').style.display == "block"){
+		document.getElementById('model-skills-soft').style.display = "none";
+		document.getElementById('model-skills-hard').style.display = "none";
+		document.getElementById('model-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('model-skills-software').style.display == "block"){
+		document.getElementById('model-skills-soft').style.display = "block";
+		document.getElementById('model-skills-hard').style.display = "none";
+		document.getElementById('model-skills-software').style.display = "none";
+		setTimeout(carasoulmodel,2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+function carasoulhomemaker(){
+	if(document.getElementById('homemaker-skills-soft').style.display == "block"){
+		document.getElementById('homemaker-skills-soft').style.display = "none";
+		document.getElementById('homemaker-skills-hard').style.display = "block";
+		document.getElementById('homemaker-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('homemaker-skills-hard').style.display == "block"){
+		document.getElementById('homemaker-skills-soft').style.display = "none";
+		document.getElementById('homemaker-skills-hard').style.display = "none";
+		document.getElementById('homemaker-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('homemaker-skills-software').style.display == "block"){
+		document.getElementById('homemaker-skills-soft').style.display = "block";
+		document.getElementById('homemaker-skills-hard').style.display = "none";
+		document.getElementById('homemaker-skills-software').style.display = "none";
+		setTimeout(carasoulhomemaker,2000);
 	}
 	else{
 		clearInterval();
@@ -487,8 +582,8 @@ function carasoulowner(){
 					</span>
 				</ul>
 				<span id='cto-skills' style="display: none">
-					<span id='cto-skills-soft' style="display: block" class='fade-in'></span>
-					<span id='cto-skills-hard' style="display: none" class='fade-in'></span>
+					<span id='cto-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='cto-skills-hard' style="display: block" class='fade-in'></span>
 					<span id='cto-skills-software' style="display: none" class='fade-in'></span>
 				</span>
 			</small>
@@ -511,8 +606,8 @@ function carasoulowner(){
 					</span>
 				</ul>
 				<span id='owner-skills' style="display: none">
-					<span id='owner-skills-soft' style="display: block" class='fade-in'></span>
-					<span id='owner-skills-hard' style="display: none" class='fade-in'></span>
+					<span id='owner-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='owner-skills-hard' style="display: block" class='fade-in'></span>
 					<span id='owner-skills-software' style="display: none" class='fade-in'></span>
 				</span>
 			</small>
@@ -523,14 +618,17 @@ function carasoulowner(){
 				<p><b>How I Started:</b> Growing up I was a national beauty pagent competitor, and after a job came up in the Springfield area, I decided to apply for an agent. Now I do commercial print and am a representative at event shows.</p>
 				<p><b>Job Responsibilities:</b></p>
 				<ul>
-					<span id='model-pg-1' style="display: block">
-						<li>Reviewing and understanding any materials necessary before shoots or events.</li>
-						<li>Having a clear understanding of the product for advertisement events.</li>
-						<li>Keeping a cool and collected head under pressure.</li>
-						<li>Having top quality interpersonal skills with photographers, directors, and fashion coordinators.</li>
-						<li>Maintaining physical health and societal standards for the image of my agent and any brands I represent.</li>
-					</span>
+					<li>Reviewing and understanding any materials necessary before shoots or events.</li>
+					<li>Having a clear understanding of the product for advertisement events.</li>
+					<li>Keeping a cool and collected head under pressure.</li>
+					<li>Having top quality interpersonal skills with photographers, directors, and fashion coordinators.</li>
+					<li>Maintaining physical health and societal standards for the image of my agent and any brands I represent.</li>
 				</ul>
+				<span id='model-skills' style="display: none">
+					<span id='model-skills-soft' style="display: none" class='fade-in'></span>
+					<span id='model-skills-hard' style="display: block" class='fade-in'></span>
+					<span id='model-skills-software' style="display: none" class='fade-in'></span>
+				</span>
 			</small>
 		</div>
 		<div style="display: none" id="homemaker-descript">
