@@ -551,3 +551,14 @@ h3 {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+button {
+	background-color: #283593;
+	border-color: #ffb300;
+	color: white;
+	border-width: 1px;
+	margin: 1px;
+}
+button:hover {
+	color: #ffb300;
+}
