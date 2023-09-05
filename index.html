@@ -6,6 +6,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./style.css">
+<style>
+.fade-in {
+  animation: fadeIn ease 1s;
+  -webkit-animation: fadeIn ease 1s;
+  -moz-animation: fadeIn ease 1s;
+  -o-animation: fadeIn ease 1s;
+  -ms-animation: fadeIn ease 1s;
+}
+
+
+@keyframes fadeIn{
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+</style>
 <script>
 var active = "none";
 var job_page = 1;
@@ -14,6 +70,18 @@ var responsibilities_pg = 1;
 var total_responsibility_pages = 1;//TODO: ADJUST WITHIN PG_SWITCH()
 var edu_page = 1;
 var total_edu_pages = 1;//TODO: ADJUST
+//list of skills and professional positions it applies to
+var soft_skills = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'critical thinking', 'creativity', 'work ethic', 'leadership', 'team management', 'project management', 'interpersonal skills', 'organizational skills','time management']
+var hard_skills = ['accounting','business plan development','business operations','marketing','HTML','CSS','python','SQL','JavaScript','C++','C#','R Code']
+var software_skill = ['Microsoft Office', 'Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
+ 
+var cto_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'adaptability', 'problem solving', 'creativity', 'work ethic', 'leadership', 'team management', 'critical thinking','interpersonal skills','time management']
+var cto_skills_hard = ['HTML','CSS','SQL','JavaScript','R Code']
+var cto_skills_software = ['Microsoft Office','Google Forms', 'Google Sheets/Excel', 'R Studio', 'Github']
+
+var owner_skills_soft = ['written communication', 'verbal communication', 'teamwork', 'leadership', 'adaptability', 'problem solving', 'critical thinking', 'creativity','interpersonal skills','time management','organizational skills']
+var owner_skills_hard = ['accounting','business plan development','business operations','marketing']
+var owner_skills_software = ['Microsoft Office','Google Forms','Google Sheets/Excel','R Studio','Github']
 function job_descript(x, y){
 	//TODO: ADD RIGHT ARROW TO APPROPRIATE ONES
 	responsibilities_pg = 1;
@@ -32,6 +100,28 @@ function job_descript(x, y){
 		document.getElementById('cto-descript').style.display = "block";
 		total_responsibility_pages = 2;
 		document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('cto-skills-soft').innerHTML = "";
+		document.getElementById('cto-skills-hard').innerHTML = "";
+		document.getElementById('cto-skills-software').innerHTML = "";
+		var i = 0;
+		var y = cto_skills_soft.length;
+		while(i < y){
+			document.getElementById('cto-skills-soft').innerHTML = document.getElementById('cto-skills-soft').innerHTML + "<button class='soft-skills'>" + cto_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = cto_skills_hard.length;
+		while(i < y){
+			document.getElementById('cto-skills-hard').innerHTML = document.getElementById('cto-skills-hard').innerHTML + "<button class='hard-skills'>" + cto_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = cto_skills_software.length;
+		while(i < y){
+			document.getElementById('cto-skills-software').innerHTML = document.getElementById('cto-skills-software').innerHTML + "<button class='software-skills'>" + cto_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('cto-skills').style.display = "block";
 	}
 	else {
 		document.getElementById('cto-descript').style.display = "none";
@@ -40,6 +130,28 @@ function job_descript(x, y){
 		document.getElementById('owner-descript').style.display = "block";
 		total_responsibility_pages = 2;
 		document.getElementById('right-responsibilities').style.display = "block";
+		document.getElementById('owner-skills-soft').innerHTML = "";
+		document.getElementById('owner-skills-hard').innerHTML = "";
+		document.getElementById('owner-skills-software').innerHTML = "";
+		var i = 0;
+		var y = owner_skills_soft.length;
+		while(i < y){
+			document.getElementById('owner-skills-soft').innerHTML = document.getElementById('owner-skills-soft').innerHTML + "<button class='soft-skills'>" + owner_skills_soft[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = owner_skills_hard.length;
+		while(i < y){
+			document.getElementById('owner-skills-hard').innerHTML = document.getElementById('owner-skills-hard').innerHTML + "<button class='hard-skills'>" + owner_skills_hard[i] + "</button>"
+			i = i + 1;
+		}
+		i = 0;
+		y = owner_skills_software.length;
+		while(i < y){
+			document.getElementById('owner-skills-software').innerHTML = document.getElementById('owner-skills-software').innerHTML + "<button class='software-skills'>" + owner_skills_software[i] + "</button>"
+			i = i + 1;
+		}
+		document.getElementById('owner-skills').style.display = "block";
 	}
 	else {
 		document.getElementById('owner-descript').style.display = "none";
@@ -49,6 +161,12 @@ function job_descript(x, y){
 	}
 	else {
 		document.getElementById('homemaker-descript').style.display = "none";
+	}
+	if(x == "model" && y == "none"){
+		document.getElementById('model-descript').style.display = "block";
+	}
+	else {
+		document.getElementById('model-descript').style.display = "none";
 	}
 	if(x == "itrepairspecialist" && y == "none"){
 		document.getElementById('itrepairspecialist-descript').style.display = "block";
@@ -190,7 +308,50 @@ function adjust_height(){
 		var height = document.getElementById('edu_box').clientHeight + "px";
 		document.getElementById('work_box').style.height = height;
 	}
-}</script>
+}
+function carasoulcto(){
+	if(document.getElementById('cto-skills-soft').style.display == "block"){
+		document.getElementById('cto-skills-soft').style.display = "none";
+		document.getElementById('cto-skills-hard').style.display = "block";
+		document.getElementById('cto-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('cto-skills-hard').style.display == "block"){
+		document.getElementById('cto-skills-soft').style.display = "none";
+		document.getElementById('cto-skills-hard').style.display = "none";
+		document.getElementById('cto-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('cto-skills-software').style.display == "block"){
+		document.getElementById('cto-skills-soft').style.display = "block";
+		document.getElementById('cto-skills-hard').style.display = "none";
+		document.getElementById('cto-skills-software').style.display = "none";
+		sleep(2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+function carasoulowner(){
+	if(document.getElementById('owner-skills-soft').style.display == "block"){
+		document.getElementById('owner-skills-soft').style.display = "none";
+		document.getElementById('owner-skills-hard').style.display = "block";
+		document.getElementById('owner-skills-software').style.display = "none";
+	}
+	else if(document.getElementById('owner-skills-hard').style.display == "block"){
+		document.getElementById('owner-skills-soft').style.display = "none";
+		document.getElementById('owner-skills-hard').style.display = "none";
+		document.getElementById('owner-skills-software').style.display = "block";
+	}
+	else if(document.getElementById('owner-skills-software').style.display == "block"){
+		document.getElementById('owner-skills-soft').style.display = "block";
+		document.getElementById('owner-skills-hard').style.display = "none";
+		document.getElementById('owner-skills-software').style.display = "none";
+		sleep(2000);
+	}
+	else{
+		clearInterval();
+	}
+}
+</script>
 </head>
 <body onload='adjust_height()'>
 <!-- partial:index.partial.html -->
@@ -230,10 +391,10 @@ function adjust_height(){
     </div>
 	<div class="projects">
 		<h3>Current Projects & Goals</h3>
-		<div class="game_jams">Game Jams: <small></small></div>
 		<div class="business">Business Goals: <small>Improve Product Awareness to Increase Sales</small></div>
 		<div class="career">Career Goals: <small>Build a strong portfolio through job and life opportunities.</small></div>
 		<div class="personal">Personal Goals: <small>Create a positive environment within my home through decluttering of unnecessary stuff and improving the layout of the home.</small></div>
+		<div class="game_jams"><small><small><i>*I am constantly working on my CV, honing my skills and keeping it up to date. So, if you ever see a feature in one job that may not be in the other, check back again! It will be there soon!</i></small></small></div>
 	</div>
   </div>
   <div class="func">
@@ -241,16 +402,20 @@ function adjust_height(){
       <h3><i class="fa fa-briefcase"></i>Experience</h3>
       <ul>
 		<span id='jobs-pg1' style="display: block;">
-			<li onclick="job_descript('cto', document.getElementById('cto-descript').style.display)">
+			<li onclick="job_descript('cto', document.getElementById('cto-descript').style.display), setInterval(carasoulcto,5000)">
 				<span>Chief Technology Officer</span>
-				<small><a href='https://futurecarellc.github.io/' class='portfolio'>Future Care, LLC</a></small><small>Feb 2023 - Now</small>
+				<small><a href='https://futurecarellc.github.io/' class='portfolio'>Future Care, LLC</a></small><small>Feb 2023 - Current</small>
 			</li>
-			<li onclick="job_descript('owner', document.getElementById('owner-descript').style.display)">
+			<li onclick="job_descript('owner', document.getElementById('owner-descript').style.display), setInterval(carasoulowner,5000)">
 				<span>Business Owner</span>
-				<small><a href='https://thathousewife.github.io/' class='portfolio'>That Housewife</a></small><small>Mar 2023 - Now</small>
+				<small><a href='https://thathousewife.github.io/' class='portfolio'>That Housewife</a></small><small>Mar 2023 - Current</small>
+			</li>
+			<li onclick="job_descript('model', document.getElementById('model-descript').style.display)">
+				<span>Professional Model</span>
+				<small><a href='https://imagestalent.com/mehala-keller/' class='portfolio'>Images Agency</a></small><small>Mar 2020 - Current</small>
 			</li>
 			<li onclick="job_descript('homemaker', document.getElementById('homemaker-descript').style.display)">
-				<span>Homemaker</span>
+				<span>Private Direct Support Professional</span>
 				<small>Oct 2020 - Mar 2023
 				<small>Reason for Leave: Given new job opportunity within my field of study with a higher pay.</small></small>
 			</li>
@@ -321,6 +486,11 @@ function adjust_height(){
 						<li>Developing and implementing policies and procedures in regards to business IT infrastructure.</li>
 					</span>
 				</ul>
+				<span id='cto-skills' style="display: none">
+					<span id='cto-skills-soft' style="display: block" class='fade-in'></span>
+					<span id='cto-skills-hard' style="display: none" class='fade-in'></span>
+					<span id='cto-skills-software' style="display: none" class='fade-in'></span>
+				</span>
 			</small>
 		</div>
 		<div style="display: none" id="owner-descript">
@@ -340,12 +510,35 @@ function adjust_height(){
 						<li>Purchasing inventory and arranging display.</li>
 					</span>
 				</ul>
+				<span id='owner-skills' style="display: none">
+					<span id='owner-skills-soft' style="display: block" class='fade-in'></span>
+					<span id='owner-skills-hard' style="display: none" class='fade-in'></span>
+					<span id='owner-skills-software' style="display: none" class='fade-in'></span>
+				</span>
+			</small>
+		</div>
+		<div style="display: none" id="model-descript">
+			<h3>Professional Model</h3>
+			<small>
+				<p><b>How I Started:</b> Growing up I was a national beauty pagent competitor, and after a job came up in the Springfield area, I decided to apply for an agent. Now I do commercial print and am a representative at event shows.</p>
+				<p><b>Job Responsibilities:</b></p>
+				<ul>
+					<span id='model-pg-1' style="display: block">
+						<li>Reviewing and understanding any materials necessary before shoots or events.</li>
+						<li>Having a clear understanding of the product for advertisement events.</li>
+						<li>Keeping a cool and collected head under pressure.</li>
+						<li>Having top quality interpersonal skills with photographers, directors, and fashion coordinators.</li>
+						<li>Maintaining physical health and societal standards for the image of my agent and any brands I represent.</li>
+					</span>
+				</ul>
 			</small>
 		</div>
 		<div style="display: none" id="homemaker-descript">
-			<h3>Homemaker</h3>
+			<h3>Private Direct Support Professional</h3>
 			<small>
-				<p><b>How I Started:</b> My father had began to become ill and the best way I could help him at the time was to finish my education while caring for him.
+				<p><b>How I Started:</b> Somebody I worked with had a spouse whom had become ill. They were 
+struggling to find somebody who would adhere to a strict diet plan 
+for their spouse. I was looking at transferring out of my current position and offered that with some extra pay and hours that wouldn't interefere with school I was willing to take it up until I was closer to graduation or a better offer arrived. They agreed and hours I didn't work the wife had.</p>
 				<p><b>Job Responsibilities:</b></p>
 				<ul>
 					<li>Managing the household budget and spending.</li>
